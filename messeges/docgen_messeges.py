@@ -9,7 +9,7 @@ class Statement(Message):
     def clearData(self, state):
         self.server.saveUserData(self.event, state, "")
 
-class GetMoney(Statement):
+class GiveMeMoney(Statement):
     def request(self):
         return r"(заполни заявление)|(заполни)"
     def response(self):
