@@ -4,6 +4,7 @@ import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 from vk_api.utils import get_random_id
 from vk_api.upload import VkUpload
+from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 from modules.user import User
 
 class BotServerBase():
@@ -86,11 +87,16 @@ class BotServerBase():
     def send_message(self, event, pmessage, pattachment = None):
         '''Отправить сообщение пользователю'''
 
-        self.vk_api.messages.send(user_id=event.obj.from_id, random_id = get_random_id(), message=pmessage, attachment = pattachment)
-    
-    def upload_document(self, event, file, title= "document", tags = None):
+        self.vk_api.messages.send(user_id=event.obj.from_id, random_id=get_random_id(), message=pmessage, attachment = pattachment)
+
+    def send_message_keyboard(self, event, pmessage, pkeyboard, pattachment=None):
+        '''Отправить сообщение пользователю'''
+        self.vk_api.messages.send(user_id=event.obj.from_id, random_id=get_random_id(), message=pmessage,
+                                  keyboard=pkeyboard, attachment=pattachment)
+
+    def upload_document(self, event, file, title="document", tags=None):
         '''Загрузить документ'''
-        
+
         doc = self.vk_upload.document_message(file, title, tags, event.obj.peer_id)
         self.send_message(event, title, self.build_attachment(doc))
 
@@ -98,10 +104,29 @@ class BotServerBase():
         "Построить выражение вложенного"
         typeObj = uploadObject["type"]
         return "{}{}_{}".format(typeObj, uploadObject[typeObj]["owner_id"], uploadObject[typeObj]["id"])
-        
+
     def get_user_info(self, event):
         """ Получить информацию о пользователе в данной сессии """
-        return User(self.vk_api.users.get(user_ids = event.obj.from_id, fields = 'sex, bdate, city, country, home_town')[0])
+        return User(self.vk_api.users.get(user_ids=event.obj.from_id, fields='sex, bdate, city, country, home_town')[0])
+
+    def keyboardDays(self):
+        """ Клавиатура "Дни недели" """
+        keyboard = VkKeyboard(one_time=True)
+        keyboard.add_button('Понедельник', color=VkKeyboardColor.PRIMARY)
+        keyboard.add_button('Вторник', color=VkKeyboardColor.PRIMARY)
+        keyboard.add_button('Среда', color=VkKeyboardColor.PRIMARY)
+        keyboard.add_line()
+        keyboard.add_button('Четверг', color=VkKeyboardColor.PRIMARY)
+        keyboard.add_button('Пятница', color=VkKeyboardColor.PRIMARY)
+        keyboard.add_button('Суббота', color=VkKeyboardColor.PRIMARY)
+        return keyboard
+
+    def keyboardWeek(self):
+        """ Клавиатура "Номер недели" """
+        keyboard = VkKeyboard(one_time=True)
+        keyboard.add_button('Первая', color=VkKeyboardColor.PRIMARY)
+        keyboard.add_button('Вторая', color=VkKeyboardColor.PRIMARY)
+        return keyboard
     
 
 
