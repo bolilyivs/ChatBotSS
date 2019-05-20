@@ -66,13 +66,16 @@ class BotServer(BotServerBase):
                 date=str(datetime.datetime.now())
             )
 
-    def loadUserData(self, event):
+     def loadUserData(self, event):
         """ Загрузить данные данного пользователя """
-
-        person = Person.get(Person.userid == event.obj.from_id)
-        return {"userid": person.userid,
-            "state": person.state,
-            "data": person.data,
-            "date": person.date,
-           }
+        try:
+            person = Person.get(Person.userid == event.obj.from_id)
+            return {"userid": person.userid,
+                "state": person.state,
+                "data": person.data,
+                "date": person.date,
+            }
+        except: 
+            self.saveUserData(event)
+            return self.loadUserData(event)
 
