@@ -30,6 +30,34 @@ class IDontNow(Message):
         self.setup(server, event)
         return "Не понял, что ты написал 🤔"
 
+class PersonalRoom(Message):
+    def request(self):
+        return "личный кабинет"
+    def response(self):
+        return  "https://ssoauth.pstu.ru/LoginForm.aspx"
 
+class Web(Message):
+    def request(self):
+        return "сайт пнипу"
+    def response(self):
+        return  "http://pstu.ru/"
+
+class ITAS(Message):
+    def request(self):
+        return "итас"
+    def response(self):
+        return  "http://itas.pstu.ru/wiki/"
+        
+class AT(Message):
+    def request(self):
+        return "ат"
+    def response(self):
+        return  "http://at.pstu.ru/view/"
+
+class KTE(Message):
+    def request(self):
+        return "ктэ"
+    def response(self):
+        return  "http://ktei.pstu.ru/"
 
 
