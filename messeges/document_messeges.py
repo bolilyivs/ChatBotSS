@@ -280,3 +280,47 @@ class GetAllDocuments(Message):
                "21. Заявление об апелляции оценки, полученной на защите научного доклада\n" \
                "22. Заявление об апелляции оценки, полученной на государственном итоговом экзамене\n" \
                "23. Заявление о перезачтении кандидатского экзамена"
+
+    
+ 
+class GetKUG(Message):
+    def request(self):
+        return r"(календарный план)|(календарный график)"
+
+    def response(self):
+        return "Ваша форма обучения?" 
+
+
+class GetKUGoch(Message):
+    def request(self):
+        return "очная"
+
+    def response(self):
+        self.server.upload_document(self.event,
+                                    "documents/KUG_ochnoe.pdf",
+                                    "Единый календарный учебный график очной формы обучения")
+        return "Готово!"
+
+
+class GetKUGzaoch(Message):
+    def request(self):
+        return "заочная"
+
+    def response(self):
+        self.server.upload_document(self.event,
+                                    "documents/KUG_zaochnoe.pdf",
+                                    "Единый календарный учебный график заочной формы обучения")
+        return "Готово!"
+
+
+class GetKUGoch_zaoch(Message):
+    def request(self):
+        return r"(очно-заочная)|(очно заочная)"
+
+    def response(self):
+        self.server.upload_document(self.event,
+                                    "documents/KUG_ochno-zaochnoe.pdf",
+                                    "Единый календарный учебный график очно-заочной формы обучения")
+        return "Готово!"   
+    
+    
