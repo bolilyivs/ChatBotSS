@@ -7,6 +7,7 @@ from messeges.docgen_messeges import *
 from messeges.schedule_messeges import *
 
 from dialogs.gen_doc_dialog import *
+from dialogs.document_dialog import *
 
 import settings
 import time
@@ -33,7 +34,8 @@ class BotServer(BotServerBase):
                 break
         if not ok:
             person = self.loadUserData(event)
-            ok = GenDocDialog().run(person["state"], self, event)      
+            ok = GenDocDialog().run(person["state"], self, event)
+            ok |= DocumentDialog().run(person["state"], self, event)      
             if not ok:
                 self.send_message(event, IDontNow().get(self, event))
     
