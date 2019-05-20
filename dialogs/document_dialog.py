@@ -3,7 +3,8 @@ import settings
 
 
 class DocumentDialog():
-    def run(self, state, server, event):
+    def run(self, person, server, event):
+        state = person["state"]
         if (state == "listDocsIsActive"):
             for doc in settings.DOCUMENTS:
                 text = eval(doc + "()").get(server, event)

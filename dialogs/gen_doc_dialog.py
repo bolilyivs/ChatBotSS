@@ -1,8 +1,8 @@
 from messeges.docgen_messeges import *
 
 class GenDocDialog():
-    def run(self, state, server, event):
-        print(state)
+    def run(self, person, server, event):
+        state = person["state"]
         text = ""
         if (state == "gen_course"):
             text = GetMoneyCourse().get(server, event)

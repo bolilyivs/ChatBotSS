@@ -1,6 +1,6 @@
 GROUP_TOKEN = ""
 GROUP_ID = 180454656
-MODULES = ["GiveMeMoneyFinal", "HelloMsg",
+MODULES = ["GiveMeMoney", "HelloMsg",
            "ByeMsg", "WhoIMsg", "WhoYouMsg", "GetAllDocuments", "GetKUG", "GetKUGoch", "GetKUGzaoch", "GetKUGoch_zaoch",
           "PersonalRoom", "Web", "ITAS", "KTE", "AT", "Schedule"]
 

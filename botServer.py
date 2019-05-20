@@ -8,6 +8,7 @@ from messeges.schedule_messeges import *
 
 from dialogs.gen_doc_dialog import *
 from dialogs.document_dialog import *
+from dialogs.schedule_dialog import *
 
 import settings
 import time
@@ -20,6 +21,9 @@ class BotServer(BotServerBase):
     def __init__(self):
         super().__init__(settings.GROUP_TOKEN, settings.GROUP_ID)
         self.modules = settings.MODULES
+        self.days = settings.DAYS
+        self.week = settings.WEEK
+        self.groups = settings.GROUPS
     
     def newMessage(self, event):
         super().newMessage(event)
@@ -34,10 +38,13 @@ class BotServer(BotServerBase):
                 break
         if not ok:
             person = self.loadUserData(event)
-            ok = GenDocDialog().run(person["state"], self, event)
-            ok |= DocumentDialog().run(person["state"], self, event)      
-            if not ok:
-                self.send_message(event, IDontNow().get(self, event))
+            if DocumentDialog().run(person, self, event):
+                return 
+            if ScheduleExecute().run(person, self, event):
+                return
+            if GenDocDialog().run(person, self, event):
+                return
+            self.send_message(event, IDontNow().get(self, event))
     
     def seqName(self, event):
         "Создание уникального названия"
@@ -56,7 +63,7 @@ class BotServer(BotServerBase):
         """ Сохранить данные данного пользователя """
         try:
             person = Person.get(Person.userid == event.obj.from_id)
-            person.state = state
+            person.state = str(state)
             person.data = str(data)
             person.date = str(datetime.datetime.now())
             person.save()
