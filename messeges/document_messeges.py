@@ -256,6 +256,7 @@ class GetAllDocuments(Message):
         return "список документов"
 
     def response(self):
+        self.server.saveUserData(self.event, "listDocsIsActive", "")
         return "Введите номер документа:\n" \
                "1. Заявление о продлении срока промежуточной аттестации\n" \
                "2. Заявление о перезачтении дисциплин\n" \
