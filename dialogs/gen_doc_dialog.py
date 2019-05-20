@@ -1,17 +1,22 @@
-from messeges.document_messeges import *
+from messeges.docgen_messeges import *
 
 class GenDocDialog():
     def run(self, state, server, event):
+        print(state)
+        text = ""
         if (state == "gen_course"):
-            GetMoneyCourse().get(server, event))
+            text = GetMoneyCourse().get(server, event)
         elif (state == "gen_group"):
-            GetMoneyGroup().get(server, event))
+            text = GetMoneyGroup().get(server, event)
         elif (state == "gen_secondName"):
-            GetMoneySecondName().get(server, event))
+            text = GetMoneySecondName().get(server, event)
         elif (state == "gen_mobile"):
-            GetMoneyMobile().get(server, event))
+            text = GetMoneyMobile().get(server, event)
         elif (state == "gen_active"):
-            GiveMeMoneyFinal().get(server, event))
+            text = GiveMeMoneyFinal().get(server, event)
         else:
             return False
-        return True
+        if text != "":
+            server.send_message(event, text)   
+            return True
+        return False

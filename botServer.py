@@ -6,6 +6,8 @@ from messeges.document_messeges import *
 from messeges.docgen_messeges import *
 from messeges.schedule_messeges import *
 
+from dialogs.gen_doc_dialog import *
+
 import settings
 import time
 import datetime
@@ -28,13 +30,11 @@ class BotServer(BotServerBase):
             if text != "":
                 ok = True
                 self.send_message(event, text)
+                break
         if not ok:
             person = self.loadUserData(event)
-
-            if person["state"] == 1:
-                self.send_message(event, IDontNow().get(self, event))
-
-            else:
+            ok = GenDocDialog().run(person["state"], self, event)      
+            if not ok:
                 self.send_message(event, IDontNow().get(self, event))
     
     def seqName(self, event):
@@ -55,7 +55,7 @@ class BotServer(BotServerBase):
         try:
             person = Person.get(Person.userid == event.obj.from_id)
             person.state = state
-            person.data += str(data)
+            person.data = str(data)
             person.date = str(datetime.datetime.now())
             person.save()
         except:      
@@ -66,7 +66,7 @@ class BotServer(BotServerBase):
                 date=str(datetime.datetime.now())
             )
 
-     def loadUserData(self, event):
+    def loadUserData(self, event):
         """ Загрузить данные данного пользователя """
         try:
             person = Person.get(Person.userid == event.obj.from_id)
