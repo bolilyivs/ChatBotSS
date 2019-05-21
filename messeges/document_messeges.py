@@ -289,6 +289,7 @@ class GetKUG(Message):
         return r"(календарный план)|(календарный график)"
 
     def response(self):
+        self.server.saveUserData(self.event, "kug", "")
         return "Ваша форма обучения?" 
 
 

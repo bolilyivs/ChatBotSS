@@ -1,12 +1,14 @@
-GROUP_TOKEN = ""
+GROUP_TOKEN = "c71283221733a6f323993735ad971575ff4fc92ded92812cb2fbf3159e79e5768d1fdef874348ac3a83fc"
 GROUP_ID = 180454656
-MODULES = ["GiveMeMoney", "HelloMsg",
-           "ByeMsg", "WhoIMsg", "WhoYouMsg", "GetAllDocuments", "GetKUG", "GetKUGoch", "GetKUGzaoch", "GetKUGoch_zaoch",
+MODULES = ["Help", "GiveMeMoney", "HelloMsg",
+           "ByeMsg", "WhoIMsg", "WhoYouMsg", "GetAllDocuments", "GetKUG",
           "PersonalRoom", "Web", "ITAS", "KTE", "AT", "Schedule"]
 
 DOCUMENTS = ["GetFile1", "GetFile2", "GetFile3", "GetFile4", "GetFile5", "GetFile6", "GetFile7", "GetFile8", "GetFile9",
              "GetFile10", "GetFile11", "GetFile12", "GetFile13", "GetFile14", "GetFile15", "GetFile16", "GetFile17",
              "GetFile18", "GetFile19", "GetFile20", "GetFile21", "GetFile22", "GetFile23"]
+
+KUG = ["GetKUGoch", "GetKUGzaoch", "GetKUGoch_zaoch"]
 
 GROUPS = {
     "рис-16-1б": "RIS-16-1b",

@@ -9,6 +9,7 @@ from messeges.schedule_messeges import *
 from dialogs.gen_doc_dialog import *
 from dialogs.document_dialog import *
 from dialogs.schedule_dialog import *
+from dialogs.kug_dialog import *
 
 import settings
 import time
@@ -39,6 +40,8 @@ class BotServer(BotServerBase):
         if not ok:
             person = self.loadUserData(event)
             if DocumentDialog().run(person, self, event):
+                return
+            if KUGDialog().run(person, self, event):
                 return 
             if ScheduleExecute().run(person, self, event):
                 return

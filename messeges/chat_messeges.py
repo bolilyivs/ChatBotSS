@@ -28,7 +28,7 @@ class WhoYouMsg(Message):
 class IDontNow(Message):
     def get(self, server, event):
         self.setup(server, event)
-        return "Не понял, что ты написал 🤔"
+        return "Не понял, что ты написал 🤔\n Введите помощь!"
 
 class PersonalRoom(Message):
     def request(self):
@@ -60,4 +60,20 @@ class KTE(Message):
     def response(self):
         return  "http://ktei.pstu.ru/"
 
-
+class Help(Message):
+    def request(self):
+        return "помощь"
+    def response(self):
+        return  """
+        Команды:
+        -> список документов
+        -> расписание
+        -> заполни заявление | заполни
+        -> календарный план | календарный график
+        -> сайт пнипу
+        -> личный кабине
+        -> итас
+        -> ат
+        -> ктэ
+        -> помощь  
+        """
