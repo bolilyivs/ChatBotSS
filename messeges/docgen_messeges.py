@@ -43,7 +43,7 @@ class GetMoneyMobile(Statement):
         return r".+"
     def response(self):
         self.saveData("gen_active")
-        return  "Введите: за какую активность стипендия? "
+        return  "Введите: за какую активность стипендия? (учебной)"
 
 class GiveMeMoneyFinal(Statement):
     def request(self):
@@ -58,7 +58,7 @@ class GiveMeMoneyFinal(Statement):
             "fio" : self.user.last_name + " " + self.user.first_name[0] + ". " + data[3][0] + ".",
             "mobile" : data[4],
             "active" : data[5]}
-        self.server.upload_gen_document(self.event, "documents/SchApp.docx", values, "Степуха!")
+        self.server.upload_gen_document(self.event, "documents/SchApp.docx", values, values["fio"] + " Заявление на повышенную стипендию")
         self.clearData("default")
         return  "Готово!"
 
