@@ -3,7 +3,7 @@ import settings
 from modules.botServerBase import BotServerBase
 from modules.message import Message
 from modules.xlsxparser import XLSXExporter
-from messeges.schedule_messeges import UpdateState
+from messages.schedule_messages import UpdateState
 
 
 class ScheduleExecute():

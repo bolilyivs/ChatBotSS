@@ -1,10 +1,10 @@
 from modules.botServerBase import BotServerBase
 from modules.gendoc import GenDoc
 
-from messeges.chat_messeges import *
-from messeges.document_messeges import *
-from messeges.docgen_messeges import *
-from messeges.schedule_messeges import *
+from messages.chat_messages import *
+from messages.document_messages import *
+from messages.docgen_messages import *
+from messages.schedule_messages import *
 
 from dialogs.gen_doc_dialog import *
 from dialogs.document_dialog import *

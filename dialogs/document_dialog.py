@@ -1,4 +1,4 @@
-from messeges.document_messeges import *
+from messages.document_messages import *
 import settings
 
 

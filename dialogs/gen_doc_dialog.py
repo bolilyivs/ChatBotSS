@@ -1,4 +1,4 @@
-from messeges.docgen_messeges import *
+from messages.docgen_messages import *
 
 class GenDocDialog():
     def run(self, person, server, event):
